@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Styling */
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        nav { background-color: #444; text-align: center; padding: 0.5em 0; }
+        nav a { color: white; text-decoration: none; padding: 0.5em 1em; }
+        .container { width: 80%; margin: 20px auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+        
+        /* Profile Header */
+        .profile-header { display: flex; align-items: center; margin-bottom: 20px; }
+        .profile-avatar img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px; }
+        .profile-info h1 { color: #007bff; margin-bottom: 5px; }
+
+        /* Tabs */
+        .profile-tabs button { padding: 10px 20px; margin-right: 10px; border: none; background-color: #ddd; cursor: pointer; }
+        .profile-tabs button.active { background-color: #4CAF50; color: white; }
+        .tab-content { display: none; margin-top: 20px; }
+        .tab-content.active { display: block; }
+
+        /* Savings Grid */
+        .savings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .savings-item { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #f9f9f9; }
+        .savings-item h3 { margin: 0; color: #4CAF50; }
+
+        /* Settings */
+        #settings-form label { display: block; margin-top: 10px; }
+        #settings-form input { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; }
+        #settings-form button { margin-top: 15px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+
+        /* Activity Log */
+        .activity-log li { margin-bottom: 5px; list-style: none; background: #eee; padding: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body class="main">
+    <header>
+    
+            <div class="icon">
+    <h1>Mara </h1>
+</div>
+</div>
+<div class="topnav">
+    <a href="index.html">Home </a>
+    <a href="dashboard.html">Dashboard</a>
+<a href="http://localhost/MMS/Mara/register.php"target="_blank">Register</a>
+<a href="login.html">Log in</a>
+<a href="http://localhost/MMS/Mara/loan.php">Loan</a>
+<a href="savings">Savings</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+<a href="profile.html">
+    <img src="Images/user.png" class="user-pic">
+</a>
+<div class="sub-menu-wrap">
+    <div class="sub-menu">
+        <div class="user-info">
+            <img src="" alt="">
+            <h3>User Name:</h3>
+        </div>
+    </div>
+</div>
+  </div>
+    </header>
+    <div class="profile-container container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="https://thumbs.dreamstime.com/b/man-profile-cartoon-smiling-round-icon-vector-illustration-graphic-design-135443422.jpg" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h1 id="profile-username">username</h1>
+                <p id="profile-email">***@gmail.com</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="profile-tabs">
+            <button class="tab-button active" data-tab="savings">My Savings</button>
+            <button class="tab-button" data-tab="settings">Settings</button>
+            <button class="tab-button" data-tab="activity">Activity</button>
+        </div>
+
+        <div class="profile-content">
+            <!-- Savings Tab -->
+            <div id="savings" class="tab-content active">
+                <h2>My Savings</h2>
+                <div class="savings-grid">
+                    <!-- Transactions will load here -->
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content">
+                <h2>Settings</h2>
+                <form id="settings-form">
+                    <label for="new-username">Username:</label>
+                    <input type="text" id="new-username" name="new-username">
+                    <label for="new-email">Email:</label>
+                    <input type="email" id="new-email" name="new-email">
+                    <label for="new-password">Password:</label>
+                    <input type="password" id="new-password" name="new-password">
+                    <button type="submit" class="button">Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Activity Log Tab -->
+            <div id="activity" class="tab-content">
+                <h2>Activity Log</h2>
+                <ul class="activity-log">
+                    <li>Deposited Ksh 5,000</li>
+                    <li>Withdrew Ksh 2,000</li>
+                    <li>Updated profile settings</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<footer>
+        <p >&copy; 2024 MMS System. All rights reserved.</p>
+        <div>
+        <a href="#" >Privacy Policy</a>
+        <a href="#" >Terms of Service</a>
+        <a href="#" >Contact Info</a>
+        </div>
+    </footer>-->
+    <script src="profile.js"></script>
+</body>
+</html>
