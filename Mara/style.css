@@ -1,0 +1,18 @@
+h1{
+    color: #333;
+    font-size: 2em;
+    text-align: center;
+}
+body{
+    background-image: url('Images/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+}
+form{
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}

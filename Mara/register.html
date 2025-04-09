@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="register.css">
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image:url('Images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+h1{
+    color: #333;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 20px;
+}
+ /* Basic styling for the header */
+header {
+background-color: #1b7cd6; /* Dark background color */
+color: white; /* White text color */
+padding: 1em 0; /* Vertical padding */
+text-align: center; 
+}
+
+/* Styling for the top navigation bar */
+.topnav {
+display: flex; /* Use flexbox for layout */
+justify-content: center; /* Center items horizontally */
+gap: 1.5em; /* Space between links */
+}
+
+/* Styling for the links within the navigation bar */
+.topnav a {
+color: white; /* White text color for links */
+text-decoration: none; /* Remove underlines from links */
+padding: 0.5em 1em; /* Padding around link text */
+border-radius: 5px; /* Slightly rounded corners for links */
+transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the links */
+.topnav a:hover {
+background-color: #555; /* Darker background on hover */
+}
+
+/* Optional: Style for the active/current page link (if you have a way to identify it) */
+.topnav a.active {
+background-color: #007bff; /* Blue for the active link */
+font-weight: bold; /* Make the active link text bold */
+}
+        form {
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #3e8e41;
+        }
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .signup {
+            text-align: center;
+        }
+        #signupError {
+            color: red;
+            text-align: center;
+        }
+    
+    </style>
+</head>
+<body>
+    <header>
+       
+        <h1>Mara Savings</h1>
+        <p class="tagline">Your journey to smarter savings starts here.</p>
+   
+    <div class="topnav">
+        <a href="home.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Log in</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="profile.html">Profile</a>
+    </div>
+    </header>
+    <form action="register_process.php" method="post" id="registration-form">
+        <h1>Register</h1>
+       
+    <h2>Welcome to the Mara</h2>
+        <p class="tagline">Join us today and start saving!</p>
+        
+        <label for="memberName">Full Names:</label><br>
+        <input type="text" id="memberName" name="memberName" placeholder="Enter member name" required><br>
+
+        <label for="id-no">National ID:</label><br>
+        <input type="number" id="id-no" name="nationalID" placeholder="National ID" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
+
+        <label for="confirmpassword">Confirm Password:</label><br>
+        <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required><br>
+
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob" required><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone" placeholder="Enter phone number"><br>
+
+        <label for="role">Role:</label><br>
+        <select name="role" id="role">
+            <option value="">-----</option>
+            <option value="member">Member</option>
+            <option value="admin">Admin</option>
+        </select><br>
+
+        <label for="savings">Savings:</label><br>
+        <select name="savings" id="savings">
+            <option value="">-----</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="daily">Daily</option>
+        </select><br>
+
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" name="amount" placeholder="Enter amount"><br>
+
+        <button type="submit">Register</button>
+
+        <div class="remember-forgot">
+            <label>
+                <input type="checkbox" name="remember" /> Remember me
+            </label>
+            <a href="#">Forgot password?</a>
+        </div>
+    </form>
+
+    <div class="signup">
+        <p>Already have an account? <a href="login.php">Login now</a></p>
+    </div>
+    <p id="signupError"></p>
+    <p id="signupSuccess"></p>
+    <script src="register.js"></script>
+</body>
+</html>

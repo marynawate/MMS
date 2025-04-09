@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="login.css">
+
+    
+    <title>Login</title>
+    
+</head>
+<body>
+    <form action="login_process.php" method="post">
+        <label for="username">Email:</label>
+        <input type="text" name="username" id="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required><br>
+
+        <input type="submit" value="Login">
+    
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </form>
+    <!--<script src="login.js"></script>-->
+    <script>
+        document.addEventListener('submit', function(event) {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                event.preventDefault(); // Prevent form submission
+                alert('Please fill in all fields.');
+            }
+            else {
+                // Optionally, you can add more validation here
+                alert('Login successful!');
+            }
+        });
+    </script>
+</body>
+</html>
+

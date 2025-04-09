@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Edit Your Profile</h2>
+
+    <!-- Form to Edit Profile -->
+    <form action="update_profile.php" method="post">
+        <label for="memberName">Full Names:</label><br>
+        <input type="text" id="memberName" name="memberName" value="<?php echo isset($user['fullname']) ? htmlspecialchars($user['fullname']) : ''; ?>" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="<?php echo isset($user['email']) ? htmlspecialchars($user['email']) : ''; ?>" required><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone" value="<?php echo isset($user['phone']) ? htmlspecialchars($user['phone']) : ''; ?>"><br>
+
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob" value="<?php echo isset($user['dob']) ? htmlspecialchars($user['dob']) : ''; ?>" required><br>
+
+        <label for="role">Role:</label><br>
+        <select name="role" id="role" required>
+            <option value="member" <?php echo (isset($user['role']) && $user['role'] == 'member') ? 'selected' : ''; ?>>Member</option>
+            <option value="admin" <?php echo (isset($user['role']) && $user['role'] == 'admin') ? 'selected' : ''; ?>>Admin</option>
+        </select><br>
+
+        <label for="savings">Savings Frequency:</label><br>
+        <select name="savings" id="savings" required>
+            <option value="weekly" <?php echo (isset($user['savings_frequency']) && $user['savings_frequency'] == 'weekly') ? 'selected' : ''; ?>>Weekly</option>
+            <option value="monthly" <?php echo (isset($user['savings_frequency']) && $user['savings_frequency'] == 'monthly') ? 'selected' : ''; ?>>Monthly</option>
+            <option value="daily" <?php echo (isset($user['savings_frequency']) && $user['savings_frequency'] == 'daily') ? 'selected' : ''; ?>>Daily</option>
+        </select><br>
+
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" name="amount" value="<?php echo isset($user['savings_amount']) ? htmlspecialchars($user['savings_amount']) : ''; ?>" required><br>
+
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <div>
+        <p><a href="home.html">Go back to dashboard</a></p>
+    </div>
+
+</body>
+</html>

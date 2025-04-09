@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+         /* Basic styling for the header */
+header {
+    background-color: #1b7cd6; /* Dark background color */
+    color: white; /* White text color */
+    padding: 1em 0; /* Vertical padding */
+    text-align: center; /* Center the navigation links */
+}
+
+/* Styling for the top navigation bar */
+.topnav {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center items horizontally */
+    gap: 1.5em; /* Space between links */
+}
+
+/* Styling for the links within the navigation bar */
+.topnav a {
+    color: white; /* White text color for links */
+    text-decoration: none; /* Remove underlines from links */
+    padding: 0.5em 1em; /* Padding around link text */
+    border-radius: 5px; /* Slightly rounded corners for links */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the links */
+.topnav a:hover {
+    background-color: #555; /* Darker background on hover */
+}
+
+/* Optional: Style for the active/current page link (if you have a way to identify it) */
+.topnav a.active {
+    background-color: #007bff; /* Blue for the active link */
+    font-weight: bold; /* Make the active link text bold */
+}
+
+/* Responsive adjustments (optional) */
+@media screen and (max-width: 600px) {
+    .topnav {
+        flex-direction: column; /* Stack links vertically on smaller screens */
+        align-items: center; /* Center items horizontally when stacked */
+        gap: 0.5em; /* Reduce gap on smaller screens */
+    }
+
+    .topnav a {
+        width: 80%; /* Make links take up more width on smaller screens */
+        text-align: center; /* Center text within the stacked links */
+    }
+}
+        body {
+            font-family: sans-serif;
+            padding-top: 80px; /* Adjust for navigation bar height */
+            background-image: url('Images/background.jpg');
+        }
+        .contact-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-container h1 {
+            text-align: center;
+        }
+        .contact-container p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .contact-container form {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .contact-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .contact-container input[type="text"],
+        .contact-container input[type="email"],
+        .contact-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .contact-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .contact-container input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+        <div class="topnav">
+            <a href="home.html">Home </a>
+        <a href="register.html"target="_blank">Register</a>
+        <a href="login.html">Log in</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="profile.html">Profile
+        </a>
+        </header>
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <p>Please fill out the form below to contact us.</p>
+
+        <form action="contact_process.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required><br>
+
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" id="subject" required><br>
+
+            <label for="message">Message:</label><br>
+            <textarea name="message" id="message" rows="5" required></textarea><br>
+
+            <input type="submit" value="Send Message">
+        </form>
+
+        <p>Or you can contact us directly at:</p>
+        <p>Email: contact@example.com</p>
+        <p>Phone: 123-456-7890</p>
+    </div>
+</body>
+</html>
+

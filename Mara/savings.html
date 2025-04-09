@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Plans</title>
+    <link rel="stylesheet" href="sav.css">
+</head>
+<body>
+    <div class="hero">
+        <h1>Welcome to Mara Savings</h1>
+        <p class="tagline">Your journey to smarter savings starts here.</p>
+    
+    
+        <div class="cta-buttons">
+            <a href="savings.html">Explore Savings Plans</a>
+            <a href="applyloan.html">Explore Loan Plans</a>
+            <a href="about.php">Learn About Us</a>
+            <a href="contact.php">Contact Support</a>
+        </div>
+    
+        <div class="features">
+            <div class="feature">
+                <img src="Images/Savings icon.png" alt="Savings Icon">
+                <h3>Flexible Savings</h3>
+                <p>Choose from weekly, monthly, or daily savings plans that fit your goals.</p>
+            </div>
+            <div class="feature">
+                <img src="Images/security.png" alt="Security Icon">
+                <h3>100% Secure</h3>
+                <p>We ensure your data and funds are protected with top-tier security measures.</p>
+            </div>
+            <div class="feature">
+                <img src="Images/track.png" alt="Tracking Icon">
+                <h3>Track Your Progress</h3>
+                <p>Monitor your savings and stay on top of your goals with real-time tracking.</p>
+            </div>
+        </div>
+    </div>
+    <section class="savings-plans">
+        <h2>Available Savings Plans</h2>
+        <div id="plans" class="plans-container"></div>
+    </section>
+
+    
+
+        <!-- Edit Savings Plan Form (Initially Hidden) -->
+        <section id="edit-plan-section" class="edit-plan" style="display: none;">
+            <h2>Edit Savings Plan</h2>
+            <form id="edit-plan-form" method="POST">
+                <input type="hidden" id="edit-plan-id" name="id">
+                
+                <label for="edit-name">Plan Name:</label>
+                <input type="text" id="edit-name" name="name" required><br>
+
+                <label for="edit-description">Description:</label>
+                <textarea id="edit-description" name="description" required></textarea><br>
+
+                <label for="edit-amount">Amount:</label>
+                <input type="number" id="edit-amount" name="amount" required><br>
+
+                <label for="edit-type">Type:</label>
+                <select id="edit-type" name="type" required>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="daily">Daily</option>
+                </select><br>
+
+                <button type="submit">Save Changes</button>
+                <button type="button" id="cancel-edit-btn">Cancel</button>
+            </form>
+        </section>
+
+        <!-- Create New Savings Plan -->
+        <section class="create-plan">
+            <h2>Create a New Savings Plan</h2>
+            <form action="create_plan.php" method="POST">
+                <label for="name">Plan Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter plan name" required><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" placeholder="Enter plan description" required></textarea><br>
+
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter amount to save" required><br>
+
+                <label for="type">Type:</label>
+                <select id="type" name="type" required>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="daily">Daily</option>
+                </select><br>
+
+                <button type="submit">Create Plan</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Mara Savings Platform. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fetching and displaying savings plans dynamically
+        window.onload = function() {
+            fetch('get_plans.php')
+                .then(response => response.json())
+                .then(data => {
+                    const plansContainer = document.getElementById('plans');
+                    data.forEach(plan => {
+                        const planElement = document.createElement('div');
+                        planElement.classList.add('plan');
+                        planElement.innerHTML = `
+                            <h3>${plan.name}</h3>
+                            <p>${plan.description}</p>
+                            <p><strong>Amount: </strong>${plan.amount}</p>
+                            <p><strong>Type: </strong>${plan.type}</p>
+                            <button class="edit-btn" data-id="${plan.id}" data-name="${plan.name}" data-description="${plan.description}" data-amount="${plan.amount}" data-type="${plan.type}">Edit</button>
+                            <button class="delete-btn" data-id="${plan.id}">Delete</button>
+                        `;
+                        plansContainer.appendChild(planElement);
+                    });
+
+                    // Add event listeners to the "Edit" buttons
+                    const editButtons = document.querySelectorAll('.edit-btn');
+                    editButtons.forEach(button => {
+                        button.addEventListener('click', handleEditClick);
+                    });
+
+                    // Add event listeners to the "Delete" buttons
+                    const deleteButtons = document.querySelectorAll('.delete-btn');
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', handleDeleteClick);
+                    });
+                })
+                .catch(error => console.log('Error fetching plans:', error));
+        };
+
+        // Handle the edit button click
+        function handleEditClick(event) {
+            // Get plan details from data attributes
+            const planId = event.target.getAttribute('data-id');
+            const planName = event.target.getAttribute('data-name');
+            const planDescription = event.target.getAttribute('data-description');
+            const planAmount = event.target.getAttribute('data-amount');
+            const planType = event.target.getAttribute('data-type');
+
+            // Pre-fill the edit form with the plan data
+            document.getElementById('edit-plan-id').value = planId;
+            document.getElementById('edit-name').value = planName;
+            document.getElementById('edit-description').value = planDescription;
+            document.getElementById('edit-amount').value = planAmount;
+            document.getElementById('edit-type').value = planType;
+
+            // Show the edit form
+            document.getElementById('edit-plan-section').style.display = 'block';
+        }
+
+        // Handle cancel edit action
+        document.getElementById('cancel-edit-btn').addEventListener('click', function() {
+            document.getElementById('edit-plan-section').style.display = 'none';
+        });
+
+        // Handle form submission for updating the plan
+        document.getElementById('edit-plan-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('update_plan.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Plan updated successfully!');
+                location.reload(); // Reload the page to show updated plan
+            })
+            .catch(error => {
+                console.error('Error updating plan:', error);
+                alert('Failed to update the plan.');
+            });
+        });
+
+        // Handle the delete button click
+// Handle the delete button click
+function handleDeleteClick(event) {
+    const planId = event.target.getAttribute('data-id');
+    const confirmDelete = confirm('Are you sure you want to delete this plan?');
+
+    if (confirmDelete) {
+        fetch('delete_plan.php', {
+            method: 'POST',
+            body: JSON.stringify({ id: planId }), // Send the planId to the server
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())  // Expecting JSON response from server
+        .then(data => {
+            if (data.success) {
+                alert('Plan deleted successfully!');
+                location.reload(); // Reload the page to remove the deleted plan
+            } else {
+                alert('Failed to delete the plan.');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting plan:', error);
+            alert('Failed to delete the plan.');
+        });
+    }
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Services</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding-top: 80px;
+        }
+        .container {
+            width: 60%;
+            margin: 30px auto;
+            padding: 25px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        input[type="text"], input[type="email"], input[type="date"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        .actions button, .actions a {
+            width: 48%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Your Profile</h2>
+    <form method="post" action="services.php">
+        <label>Full Name:</label>
+        <input type="text" name="memberName" value="{{memberName}}" required>
+
+        <label>National ID:</label>
+        <input type="text" value="{{nationalID}}" disabled>
+
+        <label>Email:</label>
+        <input type="email" value="{{email}}" disabled>
+
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" value="{{dob}}" required>
+
+        <label>Phone:</label>
+        <input type="text" name="phone" value="{{phone}}" required>
+
+        <label>Role:</label>
+        <input type="text" value="{{role}}" disabled>
+
+        <div class="actions">
+            <button type="submit" name="update">Update Profile</button>
+            <a href="services.php?delete=true" onclick="return confirm('Delete account?');" style="text-align:center; background:#f44336; color:white; text-decoration:none; line-height:40px; border-radius:5px;">Delete Account</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

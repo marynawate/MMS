@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        form input, form select, form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        #savedEntries {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Savings Tracker</h1>
+
+        <form id="savingsForm" action="save_savings.php" method="POST">
+            <label for="action">Action:</label>
+            <select id="action" name="action" required>
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">Withdraw</option>
+            </select>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" step="0.01" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <button type="submit">Save Savings</button>
+        </form>
+
+        <h2>Saved Savings Entries</h2>
+        <div id="savedEntries"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch saved entries when the page loads
+            fetchSavedEntries();
+
+            // Function to fetch saved entries from the server
+            function fetchSavedEntries() {
+                fetch('get_savings.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        let savedEntriesDiv = document.getElementById('savedEntries');
+                        savedEntriesDiv.innerHTML = '';
+
+                        data.forEach(entry => {
+                            let entryDiv = document.createElement('div');
+                            entryDiv.classList.add('entry');
+                            entryDiv.innerHTML = ` 
+                                <strong>${entry.action}</strong> - 
+                                <span>${entry.amount}</span> on 
+                                <span>${entry.date}</span>
+                            `;
+                            savedEntriesDiv.appendChild(entryDiv);
+                        });
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
